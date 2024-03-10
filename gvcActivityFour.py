@@ -3,24 +3,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 #gabuhat kog choice para sa user mo pili og image 
 img1 = "peacock.jpg"
-img2 = "pheagle.jpg"
-img3 = "lionAbstract.webp"
 
-print("Select Image to be use permanently: ")
-print("Input [1] for Peacock Image")
-print("Input [2] for  PH Eagle IImage")
-print("Input [3] for Lion Abstract Image")
-selectedImage = int(input("Input here: "))
-
-if selectedImage == 1:
-    image1 = cv2.imread(img1, cv2.IMREAD_COLOR)
-    grayScaledImage1 = cv2.imread(img1, cv2.IMREAD_GRAYSCALE)
-elif selectedImage ==2:     
-    image1 = cv2.imread(img2, cv2.IMREAD_COLOR)
-    grayScaledImage1 = cv2.imread(img2, cv2.IMREAD_GRAYSCALE)
-else:
-    image1 = cv2.imread(img3, cv2.IMREAD_COLOR)
-    grayScaledImage1 = cv2.imread(img3, cv2.IMREAD_GRAYSCALE)
+image1 = cv2.imread(img1, cv2.IMREAD_COLOR)
+grayScaledImage1 = cv2.imread(img1, cv2.IMREAD_GRAYSCALE)
 
 
 while True:
@@ -50,40 +35,42 @@ while True:
         plt.title("Historam of Image 1 in grayscaled")
         plt.plot(histImage1)
         plt.show()
-    elif selected == "4":
-        if selectedImage == 1:
-            grayScaledImage2 = cv2.imread(img2, cv2.IMREAD_COLOR)
-            grayScaledImage3 = cv2.imread(img3, cv2.IMREAD_COLOR)
-        elif selectedImage == 2: 
-            grayScaledImage2 = cv2.imread(img1, cv2.IMREAD_COLOR)
-            grayScaledImage3 = cv2.imread(img3, cv2.IMREAD_COLOR)
-        else:
-            grayScaledImage2 = cv2.imread(img1, cv2.IMREAD_COLOR)
-            grayScaledImage3 = cv2.imread(img2, cv2.IMREAD_COLOR)
-            
-        #getting the edge using canny edge detection algorithm
+    elif selected == "4":    
+        #getting the edges of the image 
         cannyEdges1 = cv2.Canny(grayScaledImage1, 100, 200)
-        cannyEdges2 = cv2.Canny(grayScaledImage2, 100, 200)
-        cannyEdges3 = cv2.Canny(grayScaledImage3, 100, 200)
+
+        laplacianEdge = cv2.Laplacian(grayScaledImage1, cv2.CV_64F)
+
+        sobelx = cv2.Sobel(grayScaledImage1, cv2.CV_64F, 1,0)
+        sobely = cv2.Sobel(grayScaledImage1, cv2.CV_64F, 0,1)
+        sobelEdges = cv2.bitwise_or(sobelx, sobely)
+
+        scharrx = cv2.Scharr(grayScaledImage1, cv2.CV_64F, 1, 0)
+        scharry = cv2.Scharr(grayScaledImage1, cv2.CV_64F, 0, 1)
+        scharrEdges = cv2.bitwise_or(scharrx, scharry)
 
         #makinga a figure
         figure = plt.figure(figsize=(10, 7))
         #adding subplot in the figure
-        figure1 = figure.add_subplot(1,3,1)
-        figure1.imshow(cannyEdges1)
+        figure1 = figure.add_subplot(1,4,1)
+        figure1.imshow(cannyEdges1, cmap = 'gray')
         figure1.axis('off')
         figure1.set_title('1st Image')
         #adding subplot in the figure
-        figure2 = figure.add_subplot(1,3,2)
-        figure2.imshow(cannyEdges2)
+        figure2 = figure.add_subplot(1,4,2)
+        figure2.imshow(laplacianEdge, cmap = 'gray')
         figure2.axis('off')
         figure2.set_title('2nd Image')
         #adding subplot in the figure
-        figure3 = figure.add_subplot(1,3,3)
-        figure3.imshow(cannyEdges3)
+        figure3 = figure.add_subplot(1,4,3)
+        figure3.imshow(sobelEdges, cmap = 'gray')
         figure3.axis('off')
         figure3.set_title('Third Image')        
-
+        #adding another subplot
+        figure4 = figure.add_subplot(1,4,4)
+        figure4.imshow(scharrEdges, cmap = 'gray')
+        figure4.axis('off')
+        figure4.set_title('Fourth Image') 
         plt.show()
     else:
         print("The inputted Value is not in the Menu")
