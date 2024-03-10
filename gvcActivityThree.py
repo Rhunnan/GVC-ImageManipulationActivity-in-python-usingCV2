@@ -11,7 +11,7 @@ image2 = cv2.imread(img2, cv2.IMREAD_COLOR)
 
 while True:
         
-    print("MENU: Select flag to display image:")
+    print("MENU:")
     print("input [1] to display Original Image")
     print("input [2] to display two histogram of Two different Images")
     print("input [3] to display seperate RGB Histograms")

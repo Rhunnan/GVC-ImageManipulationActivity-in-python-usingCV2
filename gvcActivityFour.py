@@ -10,7 +10,7 @@ grayScaledImage1 = cv2.imread(img1, cv2.IMREAD_GRAYSCALE)
 
 while True:
         
-    print("MENU: Select flag to display image:")
+    print("MENU:")
     print("input [1] to display Original Image")
     print("input [2] to display Grayscaled Image")
     print("input [3] to display the GrayScaled Image Histograms")

@@ -1,3 +1,4 @@
+import os
 import cv2
 import matplotlib.pyplot as plt
 import numpy as np
@@ -17,7 +18,7 @@ grayScaledImage1 = cv2.imread(img1, cv2.IMREAD_GRAYSCALE)
 
 while True:
         
-    print("MENU: Select flag to display image:")
+    print("MENU: ")
     print("input [1] to display Original Image")
     print("input [2] to display Grayscaled Image")
     print("input [3] to display the GrayScaled Image Histograms")
@@ -55,6 +56,9 @@ while True:
         plt.show()
     elif selected == "4": 
         dimensions =  image1.shape
+        filename = os.path.basename(r"C:\documents\RHUNNAN's\SchoolWork\2ndSem3rdYear\GVC\peacock.jpg")
+        print(f"file name: {filename}")
+
         print(f"Image heigt: {dimensions[0]} Image width: {dimensions[1]}")
 
     elif selected == "5":

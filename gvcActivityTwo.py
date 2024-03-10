@@ -38,7 +38,7 @@ cannyEdges = cv2.Canny(img2, 100, 200)
 
 while True:
         
-    print("MENU: Select flag to display image:")
+    print("MENU:")
     print("input [1] to get the size of an Image")
     print("input [2] to get BGR pixel of an image")
     print("input [3] to display laplacian Edges of the image")
