@@ -12,6 +12,8 @@ lionImg = "lionAbstract.webp"
 
 #grayscaled imgae para gamiton sa thresholding
 img2 = cv2.imread(lionImg, cv2.IMREAD_GRAYSCALE)
+
+
 # ako gekuha ang dimension sa image ron makuha nako ang size or ang height og width sa image 
 dimensions = img2.shape
 print("shape of the image load ", img2.shape)
@@ -43,6 +45,8 @@ while True:
     print("input [4] to display sobel Edges of the image")
     print("input [5] to display scharr Edges of the image")
     print("input [6] to display Canny Edges of the image")
+    print("input [7] to display the RGB colors of the same image")
+
 
     print("input [0] to Exit")
 
@@ -60,15 +64,32 @@ while True:
         print(f"Pixel Value at {x}, {y} = {pixelVal}")
     elif selected == "3":
         cv2.imshow('laplacianEdge', laplacianEdges)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
     elif selected == "4":
         cv2.imshow('sobelEdges', sobelEdges)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
     elif selected == "5":
         cv2.imshow('scharrEdge', scharrEdges)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
     elif selected == "6":
         cv2.imshow('cannyEdge', cannyEdges) 
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
+    elif selected == "7":
+        #splitting the imgae into channels aron maka kuha ang each BGR sa same image
+        img1 = cv2.imread(lionImg, cv2.IMREAD_COLOR)
+
+        b, g, r = cv2.split(img1)
+        cv2.imshow('red', r)
+        cv2.imshow('green', g)
+        cv2.imshow('blue', b)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
     else:
         print("The inputted Value is not in the Menu")
     
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+   
 
