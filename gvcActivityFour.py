@@ -72,17 +72,17 @@ while True:
         figure1 = figure.add_subplot(1,3,1)
         figure1.imshow(cannyEdges1)
         figure1.axis('off')
-        figure1.title('1st Image')
+        figure1.set_title('1st Image')
         #adding subplot in the figure
         figure2 = figure.add_subplot(1,3,2)
         figure2.imshow(cannyEdges2)
         figure2.axis('off')
-        figure2.title('2nd Image')
+        figure2.set_title('2nd Image')
         #adding subplot in the figure
         figure3 = figure.add_subplot(1,3,3)
         figure3.imshow(cannyEdges3)
         figure3.axis('off')
-        figure3.title('Third Image')        
+        figure3.set_title('Third Image')        
 
         plt.show()
     else:
