@@ -5,6 +5,7 @@ import numpy as np
 img1 = "peacock.jpg"
 img2 = "pheagle.jpg"
 img3 = "lionAbstract.webp"
+
 print("Select Image to be use permanently: ")
 print("Input [1] for Peacock Image")
 print("Input [2] for  PH Eagle IImage")
@@ -47,7 +48,8 @@ while True:
         #image1
         plt.figure()
         plt.title("Historam of Image 1 in grayscaled")
-        plt.plot(histImage1) 
+        plt.plot(histImage1)
+        plt.show()
     elif selected == "4":
         if selectedImage == 1:
             grayScaledImage2 = cv2.imread(img2, cv2.IMREAD_COLOR)
@@ -59,7 +61,30 @@ while True:
             grayScaledImage2 = cv2.imread(img1, cv2.IMREAD_COLOR)
             grayScaledImage3 = cv2.imread(img2, cv2.IMREAD_COLOR)
             
+        #getting the edge using canny edge detection algorithm
+        cannyEdges1 = cv2.Canny(grayScaledImage1, 100, 200)
+        cannyEdges2 = cv2.Canny(grayScaledImage2, 100, 200)
+        cannyEdges3 = cv2.Canny(grayScaledImage3, 100, 200)
+
+        #makinga a figure
         figure = plt.figure(figsize=(10, 7))
+        #adding subplot in the figure
+        figure1 = figure.add_subplot(1,3,1)
+        figure1.imshow(cannyEdges1)
+        figure1.axis('off')
+        figure1.title('1st Image')
+        #adding subplot in the figure
+        figure2 = figure.add_subplot(1,3,2)
+        figure2.imshow(cannyEdges2)
+        figure2.axis('off')
+        figure2.title('2nd Image')
+        #adding subplot in the figure
+        figure3 = figure.add_subplot(1,3,3)
+        figure3.imshow(cannyEdges3)
+        figure3.axis('off')
+        figure3.title('Third Image')        
+
+        plt.show()
     else:
         print("The inputted Value is not in the Menu")
     
