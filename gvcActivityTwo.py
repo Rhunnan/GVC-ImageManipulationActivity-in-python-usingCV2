@@ -21,15 +21,18 @@ ret, blackWhiteImg = cv2.threshold(img2, 127, 255, cv2.THRESH_BINARY)
 #finding laplacian edges using laplacian method in cv2
 laplacianEdges = cv2.Laplacian(img2,cv2.CV_64F)
 
-#finding Sobel edges of an image
+#finding Sobel edges of the image
 sobelx = cv2.Sobel(img2, cv2.CV_64F, 1,0)
 sobely = cv2.Sobel(img2, cv2.CV_64F, 0,1)
 sobelEdges = cv2.bitwise_or(sobelx, sobely)
 
-#finding scharr edges of an image 
+#finding scharr edges of the image 
 scharrx = cv2.Scharr(img2, cv2.CV_64F, 1, 0)
 scharry = cv2.Scharr(img2, cv2.CV_64F, 0, 1)
-scharr_edges = cv2.bitwise_or(scharrx, scharry)
+scharrEdges = cv2.bitwise_or(scharrx, scharry)
+
+#finding Canny Edges of the image
+cannyEdges = cv2.Canny(img2, 100, 200)
 
 while True:
         
@@ -38,7 +41,8 @@ while True:
     print("input [2] to get BGR pixel of an image")
     print("input [3] to display laplacian Edges of the image")
     print("input [4] to display sobel Edges of the image")
-    print("input [5] to display")
+    print("input [5] to display scharr Edges of the image")
+    print("input [6] to display Canny Edges of the image")
 
     print("input [0] to Exit")
 
@@ -58,8 +62,10 @@ while True:
         cv2.imshow('laplacianEdge', laplacianEdges)
     elif selected == "4":
         cv2.imshow('sobelEdges', sobelEdges)
-    # elif selected == "5":
-        
+    elif selected == "5":
+        cv2.imshow('scharrEdge', scharrEdges)
+    elif selected == "6":
+        cv2.imshow('cannyEdge', cannyEdges) 
     else:
         print("The inputted Value is not in the Menu")
     
