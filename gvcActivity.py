@@ -2,6 +2,14 @@ import cv2
 import numpy as np
 
 #activity 1
+
+def getPixelValue(x, y, image):
+    #getting the pixel value using the [x, y ] method, ang pixel nga gekuha nako ani kay coordinate x og y na value
+    pixelVal = image[x,y]
+
+    return pixelVal
+
+
 eagleFile = "pheagle.jpg"
 
 #reading the eagle image
@@ -42,6 +50,10 @@ while True:
     elif selected == "4":
         cv2.imshow('ealgeBW', blackWhiteImg)
     elif selected == "5":
+        x = int(input("Input Coordinate X: "))
+        y = int(input("Input Coordinate y: "))
+        
+        pixelVal = getPixelValue(x,y, img1)
         #since colored manining img1 kay gamit og flag na cv2.IMREAD_COLOR so naa ni 3 ka values which is ang BGR
         print("Pixel Blue value: {} Pixel Green Value: {} Pixel Red Value: {}".format(pixelVal[0], pixelVal[1], pixelVal[2]))
     else:
