@@ -31,7 +31,7 @@ while True:
     print("input [0] to Exit")
 
     selected = input("Input Here: ")
-    if selected == '0': # Example condition to break the loop
+    if selected == '0':
         break
     elif selected == "1":
         cv2.imshow('ealge', img1)
@@ -47,7 +47,6 @@ while True:
     else:
         print("The inputted Value is not in the Menu")
     
-    # Wait for a key press to close the window
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
